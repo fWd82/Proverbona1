@@ -36,7 +36,7 @@ http://localhost/proverbona1/user_guide/helpers/html_helper.html?highlight=css%2
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Home </a>
+        <a class="nav-link" href="http://localhost/proverbona1/index.php/dashboard">Home </a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="http://localhost/proverbona1/dashboard/add_proverb">Add Proverb <span class="sr-only">(current)</span> </a>

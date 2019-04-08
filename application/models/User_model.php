@@ -5,16 +5,6 @@ class User_model extends CI_Model{
         // View all proverbs here
     }
 
-    public function proverb_list(){
-        $this->load->database();
-        $query = $this->db
-							->select(['id','proverbstatement', 'proverbhistory', 'added_on'])
-							->from('testtable')
-							->get();
-							
-		return $query->result();
-    }
-
 
     public function register_user($array){
         $this->load->database();
@@ -24,6 +14,7 @@ class User_model extends CI_Model{
         // print_r($array); 
         // exit();
     }
+
 
     public function signin_user($username, $password){
 
@@ -46,10 +37,10 @@ class User_model extends CI_Model{
         
     }
 
+
     // public function edit_proverb(){}
     // public function delete_proverb(){}
-
-
+ 
     public function get_lang() { 
             $result = $this -> db -> select('lang_id, lang_name') -> get('table_lang') -> result_array(); 
      

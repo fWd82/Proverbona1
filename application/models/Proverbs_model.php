@@ -1,36 +1,50 @@
 <?php
+    class Proverbs_model extends CI_Model{
+        public function index(){
+            // View all proverbs here
+        } // eof index()
 
-class Proverbs_model extends CI_Model{
-    public function index(){
-        // View all proverbs here
+        public function proverb_list(){
+            $this->load->database();
+            $query = $this->db
+                                ->select(['proverb_id','proverb_statement', 'proverb_tags'])
+                                ->from('table_proverb')
+                                ->get();
+            return $query->result();
+
+
+        } // eof proverb_list()
+
+
+        public function add_proverb($array){
+            $this->load->database();
+            return $this->db->insert('table_proverb', $array);
+
+            
+            // print_r($post); exit();
+            // echo "<pre>";
+            // print_r($array); 
+            // exit();
+            
+        } // eof add_proverb()
+        // public function edit_proverb(){}
+        // public function delete_proverb(){}
+
+        public function get_reference() { 
+            $result = $this -> db -> select('reference_id, reference_category, reference_title, reference_author') -> get('table_reference') -> result_array(); 
+         
+            $proverb_reference = array(); 
+            foreach($result as $r) { 
+                $proverb_reference[$r['reference_id']] = $r['reference_category']  . ": " . $r['reference_title'] . " - " . $r['reference_author']; 
+            } 
+            $proverb_reference[''] = 'Select Reference...'; 
+            // echo "<pre>";
+            // print_r ($proverb_reference); exit;
+            return $proverb_reference; 
+            } // eof get_reference()
     }
 
-    public function proverb_list(){
-        $this->load->database();
-        $query = $this->db
-							->select(['id','proverbstatement', 'proverbhistory', 'added_on'])
-							->from('testtable')
-							->get();
-							
-		return $query->result();
-    }
 
-
-    public function add_proverb($array){
-        $this->load->database();
-        return $this->db->insert('table_proverb', $array);
-
-        
-        // print_r($post); exit();
-        // echo "<pre>";
-        // print_r($array); 
-        // exit();
-        
-    }
-    // public function edit_proverb(){}
-    // public function delete_proverb(){}
-
-}
 
 
 

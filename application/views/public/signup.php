@@ -24,7 +24,7 @@ if ($feedback = $this->session->flashdata('feedback')):
 
 
 <div class="form-group">
-    <label for="user_fullname">Full Name</label>
+    <label for="user_fullname">Full Name <span title="Mandatory" class="colorred">*</span></label>
     <?php echo form_input(['name'=>'user_fullname', 'id'=>'user_fullname', 'rows'=>'3', 'class'=>'form-control', 'placeholder'=>'Enter Your Full Name', 'value'=>set_value('user_fullname')]); ?>
     <?php echo form_error('user_fullname'); ?>
     <!-- <textarea class="form-control" id="proverbstatement" placeholder="Enter Proberb" style="font-size: 14pt"></textarea> -->
@@ -32,7 +32,7 @@ if ($feedback = $this->session->flashdata('feedback')):
 </div>
 
 <div class="form-group">
-    <label for="user_email">Email</label>
+    <label for="user_email">Email <span title="Mandatory" class="colorred">*</span></label>
     <?php echo form_input(['name'=>'user_email', 'id'=>'user_email', 'rows'=>'3', 'class'=>'form-control', 'placeholder'=>'Enter Your Email here', 'value'=>set_value('user_email')]); ?>
     <?php echo form_error('user_email'); ?>
     <small id="" class="form-text text-muted">Type your email here</small>
@@ -40,21 +40,21 @@ if ($feedback = $this->session->flashdata('feedback')):
 
 
 <div class="form-group">
-    <label for="username">Username</label>
+    <label for="username">Username <span title="Mandatory" class="colorred">*</span></label>
     <?php echo form_input(['name'=>'user_name', 'id'=>'user_name', 'class'=>'form-control', 'placeholder'=>'Enter your desired username here', 'value'=>set_value('user_name')]); ?>
     <?php echo form_error('user_name'); ?>
     <small id="" class="form-text text-muted">Type your desired username here</small>
 </div>
 
 <div class="form-group">
-    <label for="user_password">Password</label>
+    <label for="user_password">Password <span title="Mandatory" class="colorred">*</span></label>
     <?php echo form_input(['name'=>'user_password', 'id'=>'user_password', 'class'=>'form-control', 'placeholder'=>'Enter your desired password here', 'value'=>set_value('user_password')]); ?>
     <?php echo form_error('user_password'); ?>
     <small id="" class="form-text text-muted">Type your desired password here</small>
 </div>
 
 <div class="form-group">
-    <label for="user_conf_password">Confirm Password</label>
+    <label for="user_conf_password">Confirm Password <span title="Mandatory" class="colorred">*</span></label>
     <?php echo form_input(['name'=>'user_conf_password', 'id'=>'user_conf_password', 'class'=>'form-control', 'placeholder'=>'Confirm your password', 'value'=>set_value('user_conf_password')]); ?>
     <?php echo form_error('user_conf_password'); ?>
     <small id="" class="form-text text-muted">Type  your desired password again</small>
@@ -68,7 +68,7 @@ if ($feedback = $this->session->flashdata('feedback')):
 </div> -->
 
 <div class="form-group">
-    <label for="user_nativelang">Native Language</label>
+    <label for="user_nativelang">Native Language <span title="Mandatory" class="colorred">*</span> </label>
 	<?php
 	$nativelang = "";
 	if(!empty($user_nativelang)){
@@ -101,7 +101,7 @@ if ($feedback = $this->session->flashdata('feedback')):
 
 
 <div class="form-group">
-    <label for="user_country">Country</label>
+    <label for="user_country">Country <span title="Mandatory" class="colorred">*</span> </label>
     <?php echo form_input(['name'=>'user_country', 'id'=>'user_country', 'class'=>'form-control', 'placeholder'=>'Enter name of your Country', 'value'=>set_value('user_country')]); ?>
     <?php echo form_error('user_country'); ?>
     <small id="" class="form-text text-muted">Type your country here</small>

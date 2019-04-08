@@ -19,21 +19,21 @@ if ($feedback = $this->session->flashdata('feedback')):
 
 <?= form_open('http://localhost/proverbona1/dashboard/insert_proverb'); ?>
 <!-- <form> dashboard/insert_proverb -->
-  <div class="form-group">
-  <label for="proverb_lang">Select Language</label>
-    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="proverb_lang">
-          <option selected>Choose Language...</option>
-          <option value="1">Pashto</option>
-          <option value="2">English</option>
-          <option value="3">Urdu</option>
-          <option value="4">Add Your Language</option>
-    </select>
-    <small id="" class="form-text text-muted">Choose language for which you want to enter proverb</small>
 
+<div class="form-group">
+    <label for="proverb_lang"> Select Language<span title="Mandatory" class="colorred">*</span> </label>
+	<?php
+	$nativelang = "";
+	if(!empty($proverb_lang)){
+		 $nativelang = set_value('proverb_lang', $user_nativelang);
+	}
+	?>
+    <?php  echo form_dropdown('proverb_lang', $user_lang, $nativelang, 'id="proverb_lang" class="form-control"');  ?>
+    <?php echo form_error('proverb_lang'); ?>
+    <small id="" class="form-text text-muted">Select Language for which you want to add proverb</small>
 </div>
 
-
-<?php echo form_hidden('proverb_lang', '1'); ?>
+<!-- <?php echo form_hidden('proverb_lang', '1'); ?> -->
     
 
 <div class="form-group">
@@ -74,25 +74,22 @@ if ($feedback = $this->session->flashdata('feedback')):
   </div>
 
 
+
+
+  <!-- <?php echo form_hidden('proverb_reference', '1'); ?> -->
+
   <div class="form-group">
-    <label for="proverb_reference">Proverb Reference</label>
-    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="proverb_reference">
-          <option selected>Choose...</option>
-          <option value="1">Rohi Mataluna - Raj Wali Shah et al</option>
-          <option value="2">Matalona - Dr. Sultan Room</option>
-          <option value="3">Someones mouth</option>
-          <option value="3">Other</option>
-    </select>
-    <small id="" class="form-text text-muted">From where Proverb is taken, where did you see this proverb?</small>
-    <div style="display: none">
-      <label for="otherref">Other (If selected other)</label>
-      <input type="text" class="form-control" id="otherref" placeholder="Reference">
-    </div>
-  </div>
-
-
-  <?php echo form_hidden('proverb_reference', '1'); ?>
-    
+    <label for="proverb_reference">Proverb Reference <span title="Mandatory" class="colorred">*</span> </label>
+	<?php
+	$p_ref = "";
+	if(!empty($proverb_reference)){
+		 $p_ref = set_value('proverb_reference', $proverb_reference);
+	}
+	?>
+    <?php  echo form_dropdown('proverb_reference', $dd_reference, $p_ref, 'id="proverb_reference" class="form-control"');  ?>
+    <?php echo form_error('proverb_reference'); ?>
+    <small id="" class="form-text text-muted">Select Reference of Proverb  </small>
+</div>
 
   <div class="form-group">
     <label for="proverb_tags">Proverb Tags</label>

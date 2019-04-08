@@ -16,6 +16,7 @@ http://localhost/proverbona1/user_guide/helpers/html_helper.html?highlight=css%2
     <!-- <?php echo link_tag('css/mystyles.css'); ?> -->
 
 <link rel="stylesheet" type="text/css" href="http://localhost/proverbona1/assets/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="http://localhost/proverbona1/assets/css/mystyles.css">
 
 <script type='text/javascript' src="http://localhost/proverbona1/assets/js/jquery-3.3.1.js"></script>
 <script type='text/javascript' src="http://localhost/proverbona1/assets/js/bootstrap.js"></script>
@@ -37,7 +38,7 @@ http://localhost/proverbona1/user_guide/helpers/html_helper.html?highlight=css%2
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="http://localhost/proverbona1/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="http://localhost/proverbona1/user">Login</a>
