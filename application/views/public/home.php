@@ -20,6 +20,7 @@
             <th>Sr/ID. No</th>
             <th>Proverb</th>
             <th>Tags</th>
+            <th>Added on</th>
             <th>Action</th>
         </thead>
         <tbody>
@@ -30,12 +31,12 @@
                     <?= $all_proverbss->proverb_id; ?>
                 </td>
                 <td>
-                    <?= $all_proverbss->proverb_statement; ?>
+                    <!-- <?= anchor("home/proverb/3", ($all_proverbss->proverb_statement), 'attributes'); ?> -->
+                    <?= anchor("home/proverb/{$my_proverbs->proverb_idww}", ($all_proverbss->proverb_statement), 'attributes'); ?>
                 </td>
+                <td><?= $all_proverbss->proverb_tags; ?></td>
                 <td>
-                    <a href="#">
-                        <?= $all_proverbss->proverb_tags; ?>
-                    </a>
+                    <?= date('d M Y H:i', strtotime($all_proverbss->proverb_timestamp)); ?>
                 </td>
                 <td>View | Edit | Delete</td>
             </tr>
