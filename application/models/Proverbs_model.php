@@ -7,8 +7,9 @@
         public function proverb_list(){
             $this->load->database();
             $query = $this->db
-                                ->select(['proverb_id','proverb_statement', 'proverb_tags'])
+                                ->select(['proverb_id','proverb_statement', 'proverb_tags', 'proverb_timestamp'])
                                 ->from('table_proverb')
+                                ->order_by('proverb_timestamp', 'DESC')
                                 ->get();
             return $query->result();
 
@@ -30,7 +31,7 @@
         // public function edit_proverb(){}
         // public function delete_proverb(){}
 
-        public function get_reference() { 
+        public function get_reference() {
             $result = $this -> db -> select('reference_id, reference_category, reference_title, reference_author') -> get('table_reference') -> result_array(); 
          
             $proverb_reference = array(); 
@@ -42,6 +43,15 @@
             // print_r ($proverb_reference); exit;
             return $proverb_reference; 
             } // eof get_reference()
+
+        public function get_proverb_id($id) {
+            $q = $this->db->from('table_proverb')
+                        ->where( ['proverb_id' => $id] )
+                        ->get();
+            if ($q->num_rows()) 
+                return $q->row();
+            return false;
+        }
     }
 
 
