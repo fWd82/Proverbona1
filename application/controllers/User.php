@@ -7,10 +7,7 @@ class User extends CI_Controller{
         if($this->session->userdata('login_id'))
             redirect('dashboard');
         $this->load->view('public/login');
-        
-        
-
-    }
+    } // eof function index()
 
     public function user_login(){
         $this->load->library('form_validation');
@@ -57,6 +54,13 @@ class User extends CI_Controller{
     } // eof function user_login()
 
     public function signup(){
+        // Check if login
+        if($this->session->userdata('login_id'))
+            redirect('dashboard');
+        $this->load->view('public/login');
+
+
+
         //fetch data from User_model 
         $data['user_lang'] = $this -> User_model -> get_lang(); 
         // $data['user_nativelang'] = $this->input->post('user_nativelang', TRUE);
@@ -132,6 +136,6 @@ class User extends CI_Controller{
         parent::__construct(); 
         //load model 
         $this -> load -> model('User_model'); 
-    } 
+    } // eof constructor __construct()
 }
 ?>
