@@ -15,10 +15,12 @@ http://localhost/proverbona1/user_guide/helpers/html_helper.html?highlight=css%2
     </style>
     <!-- <?php echo link_tag('css/mystyles.css'); ?> -->
 
-<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>../assets/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="<?php base_url(); ?>http://localhost/proverbona1/assets/css/bootstrap.css">
 
-<script type='text/javascript' src="<?php base_url(); ?>../assets/js/jquery-3.3.1.js"></script>
-<script type='text/javascript' src="<?php base_url(); ?>../assets/js/bootstrap.js"></script>
+<!-- <script type='text/javascript' src="<?php base_url(); ?>../assets/js/jquery-3.3.1.js"></script> -->
+
+<script type='text/javascript' src="<?php base_url(); ?>http://localhost/proverbona1/assets/js/jquery-3.3.1.js"></script>
+<script type='text/javascript' src="<?php base_url(); ?>http://localhost/proverbona1/assets/js/bootstrap.js"></script>
 
 </head>
 
@@ -36,7 +38,7 @@ http://localhost/proverbona1/user_guide/helpers/html_helper.html?highlight=css%2
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost/proverbona1/index.php/dashboard">Home </a>
+        <a class="nav-link" href="http://localhost/proverbona1/dashboard">Home </a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="http://localhost/proverbona1/dashboard/add_proverb">Add Proverb <span class="sr-only">(current)</span> </a>
