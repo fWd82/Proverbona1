@@ -1,4 +1,10 @@
 # Proverbona1
+Live Preview here:
+https://fawadiqbal.com/proverbona/
+Test Credentials:
+Username: `fWd82`
+Password: `fawad82`
+
 
 ## Intro
 Pilot Project for Proverbs from different Languages.
