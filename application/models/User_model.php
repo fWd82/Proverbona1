@@ -52,7 +52,25 @@ class User_model extends CI_Model{
             // echo "<pre>";
             // print_r ($user_nativelang); exit;
             return $user_nativelang; 
-        }
+    }
+
+    public function get_my_profile() {
+            $q = $this->db->from('table_user')
+                        // ->where( ['proverb_id' => $id] )
+                        ->get();
+            if ($q->num_rows()) 
+                return $q->row();
+            return false;
+    }
+
+
+    public function get_user_profile($id) {
+        $q = $this->db->from('table_user')
+                    ->where( ['user_name' => $id] )
+                    ->get();
+        if ($q->num_rows()) 
+            return $q->row();
+        return false;
+    }
+       
 }
-
-
