@@ -4,23 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Dashboard extends CI_Controller{
     public function index(){
         $this->load->view('admin/dashboard');
-    }
+    } // eof index();
 
+    // Go to Add Proverb Page
     public function add_proverb(){
         $this->load->model('Proverbs_model');
         $this->load->model('User_model');
-
-
         $data['user_lang'] = $this -> User_model -> get_lang(); 
         $data['dd_reference'] = $this -> Proverbs_model -> get_reference(); 
-
         $this->load->view('admin/add_proverb', $data);
-    }
+    } // eof add_proverb();
 
+    // Insert Proverb
     public function insert_proverb(){
-
-        // echo "Reached Insert Proverb";
-        // $this->load->view('admin/add_proverb');
         $this->load->library('form_validation');
         $this->load->library('session');
 
@@ -58,16 +54,26 @@ class Dashboard extends CI_Controller{
             $this->load->view('admin/add_proverb', $data);
             // echo validation_errors();
         }
-    }
+    } // eof insert_proverb();
     
+    // Rate Proverb from Proverb_Details Page
+    public function rate_proverb(){
+        $this->load->model('Proverbs_model');
+        $post = $this->input->post();
+        unset($post['Submit']);
+        $this->Proverbs_model->rate_proverb($post);
+        $proverb_id = $this->input->post('proverb_id');
+        redirect("home/proverb/{$proverb_id}");
+    } // eof rate_proverb();
 
+    // Constructor
     public function __construct(){
         parent::__construct();
         if(!$this->session->userdata('login_id')){
             redirect('user');
         }
                     
-    }
+    } // eof __construct();
     
-}
+} // eof Dashboard class
 ?>
