@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2019 at 02:37 PM
+-- Generation Time: Apr 17, 2019 at 11:10 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -33,6 +33,22 @@ CREATE TABLE `table_favorite_proverb` (
   `user_id` int(11) DEFAULT NULL,
   `proverb_id` int(11) DEFAULT NULL,
   `favorite_proverb_timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `table_feedback`
+--
+
+CREATE TABLE `table_feedback` (
+  `feedback_id` int(11) NOT NULL,
+  `feedback_title` text,
+  `feedback_body` text,
+  `feedback_type` text,
+  `feedback_by` int(11) DEFAULT NULL,
+  `feedback_context` int(11) DEFAULT NULL,
+  `feedback_timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -118,8 +134,9 @@ CREATE TABLE `table_proverb` (
 --
 
 INSERT INTO `table_proverb` (`proverb_id`, `proverb_lang`, `proverb_statement`, `proverb_latin_eng`, `proverb_introduction`, `proverb_eng_meaning`, `proverb_history`, `proverb_reference`, `proverb_tags`, `proverb_addedby`, `proverb_contributors`, `proverb_timestamp`) VALUES
-(1, 2, 'په پکتو کيي به دلته سه وه', 'Che zy zy abazo la ba razy', 'مطلب چه سه د انسان ځاۓ وه هم هغه له رازي', 'Mean one can never forget his position from where he/she belongs', 'يو کلي کېي يو يو هلک اوسيدلو نو هغه نه چا تپوس اوکو چه۔۔۔۔', 1, '#life, #humannature', 1, NULL, '2019-03-31 12:13:30'),
-(3, 1, 'This is testing post', '', '', '', '', 1, '', 1, NULL, '2019-04-01 16:18:22');
+(1, 2, 'په پکتو کيي به دلته سه وه', 'Che zy zy abazo la ba razy', 'مطلب چه سه د انسان ځاۓ وه هم هغه له رازي', 'Mean one can never forget his position from where he/she belongs', 'يو کلي کېي يو يو هلک اوسيدلو نو هغه نه چا تپوس اوکو چه۔۔۔۔', 1, '#life #humannature', 1, NULL, '2019-03-31 12:13:30'),
+(3, 1, 'This is example proverb', '', '', '', '', 1, '#other', 3, NULL, '2019-04-01 16:18:22'),
+(6, 1, 'asd', '', '', '', '', 1, '', 1, NULL, '2019-04-14 18:11:46');
 
 -- --------------------------------------------------------
 
@@ -130,9 +147,28 @@ INSERT INTO `table_proverb` (`proverb_id`, `proverb_lang`, `proverb_statement`, 
 CREATE TABLE `table_rating_proverb` (
   `rating_proverb_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `proverb_id` int(11) DEFAULT NULL,
   `rating_proverb_rating_value` varchar(45) DEFAULT NULL,
   `rating_proverb_timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `table_rating_proverb`
+--
+
+INSERT INTO `table_rating_proverb` (`rating_proverb_id`, `user_id`, `proverb_id`, `rating_proverb_rating_value`, `rating_proverb_timestamp`) VALUES
+(1, 1, NULL, '4', '2019-04-14 17:57:27'),
+(2, 1, NULL, '5', '2019-04-14 17:58:49'),
+(3, 1, NULL, '4', '2019-04-14 18:01:12'),
+(4, 1, NULL, '4', '2019-04-14 18:01:29'),
+(5, 1, NULL, '4', '2019-04-14 18:02:55'),
+(6, 1, NULL, '4', '2019-04-14 18:04:41'),
+(7, 1, NULL, '33', '2019-04-14 18:05:23'),
+(8, 1, NULL, '5', '2019-04-14 18:05:57'),
+(9, 1, NULL, '5', '2019-04-14 18:06:34'),
+(10, 1, NULL, '4', '2019-04-14 18:06:53'),
+(11, 1, NULL, '5', '2019-04-15 10:39:43'),
+(12, 1, NULL, '4', '2019-04-16 17:40:13');
 
 -- --------------------------------------------------------
 
@@ -184,8 +220,8 @@ CREATE TABLE `table_user` (
 --
 
 INSERT INTO `table_user` (`user_id`, `user_fullname`, `user_email`, `user_name`, `user_password`, `user_nativelang`, `user_otherlang`, `user_country`, `user_address`, `user_department`, `user_bio`, `user_timestamp`) VALUES
-(1, 'Fawad Iqbal', 'fwd82@live.com', 'fWd82', 'fawad82', 2, 'English, Urdu', 'Pakistan', 'Village & Post Office Manglawar District Swat', 'Nil', 'Hi I am Fawad I am volunteer at Proverbona', '2019-03-31 10:00:17'),
-(3, 'Fawad Iqbal', 'fwd8282@live.com', 'fWd82Test', 'TestPass', 1, 'Pashto, Urdu', 'Pakistan', 'Village and Post Office Manglawar,, Mohallah ', 'IT', 'This is just bio', '2019-04-02 18:28:20'),
+(1, 'Fawad Iqbal', 'fwd82@live.com', 'fWd82', 'fawad82', 2, 'English, Urdu', 'Pakistan', 'Village & Post Office Manglawar District Swat', 'Volunteer at Proverbona', 'Hi I am Fawad I am volunteer at Proverbona and soem dummy text is No internet Try:\r\nChecking the network cables, modem, and router ing to Wi-Fi the network cables, modem, and router ing to Wi-Fithe network cables, modem, and router ing to Wi-Fithe network cables, modem, and router ing to Wi-Fithe network cables, modem, and router ing to Wi-Fithe network cables, modem, and router ing to Wi-Fithe network cables, modem, and router ing to Wi-Fithe network cables, modem, and router ing to Wi-Fi\r\nReconnecting to Wi-Fi', '2019-03-31 10:00:17'),
+(3, 'Ahmad Khan', 'fwd8282@live.com', 'fWd82Test', 'TestPass', 1, 'Pashto, Urdu', 'Pakistan', 'Village and Post Office Manglawar,, Mohallah ', 'IT', 'This is just bio', '2019-04-02 18:28:20'),
 (4, 'Fawad Iqbal', 'fwd82821@live.com', 'fWd82Test1', 'TestPass', 1, 'Pashto, Urdu', 'Pakistan', 'Village and Post Office Manglawar,, Mohallah ', 'IT', 'This is just bio', '2019-04-02 18:29:09'),
 (6, 'Fawad Iqbal', 'fwd8qwe2@live.com', 'Ahmad', '123123', 1, 'Pashto, Urdu', 'Pakistan', 'Village and Post Office Manglawar,, Mohallah ', '', '', '2019-04-02 19:40:21');
 
@@ -214,6 +250,14 @@ ALTER TABLE `table_favorite_proverb`
   ADD PRIMARY KEY (`favorite_proverb_id`),
   ADD KEY `fk_fav_pro_id_idx` (`proverb_id`),
   ADD KEY `fk_fav_pro_user_id_idx` (`user_id`);
+
+--
+-- Indexes for table `table_feedback`
+--
+ALTER TABLE `table_feedback`
+  ADD PRIMARY KEY (`feedback_id`),
+  ADD KEY `fk_addedby_userid_idx` (`feedback_by`),
+  ADD KEY `fk_context_proverb_id_idx` (`feedback_context`);
 
 --
 -- Indexes for table `table_lang`
@@ -248,7 +292,8 @@ ALTER TABLE `table_proverb`
 --
 ALTER TABLE `table_rating_proverb`
   ADD PRIMARY KEY (`rating_proverb_id`),
-  ADD KEY `fk_rating_user_idx` (`user_id`);
+  ADD KEY `fk_rating_user_idx` (`user_id`),
+  ADD KEY `fk_rating_proverb_id_idx` (`proverb_id`);
 
 --
 -- Indexes for table `table_reference`
@@ -284,6 +329,12 @@ ALTER TABLE `table_favorite_proverb`
   MODIFY `favorite_proverb_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `table_feedback`
+--
+ALTER TABLE `table_feedback`
+  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `table_lang`
 --
 ALTER TABLE `table_lang`
@@ -305,13 +356,13 @@ ALTER TABLE `table_points`
 -- AUTO_INCREMENT for table `table_proverb`
 --
 ALTER TABLE `table_proverb`
-  MODIFY `proverb_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `proverb_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `table_rating_proverb`
 --
 ALTER TABLE `table_rating_proverb`
-  MODIFY `rating_proverb_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rating_proverb_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `table_reference`
@@ -343,6 +394,13 @@ ALTER TABLE `table_favorite_proverb`
   ADD CONSTRAINT `fk_fav_pro_user_id` FOREIGN KEY (`user_id`) REFERENCES `table_user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Constraints for table `table_feedback`
+--
+ALTER TABLE `table_feedback`
+  ADD CONSTRAINT `fk_addedby_userid` FOREIGN KEY (`feedback_by`) REFERENCES `table_user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_context_proverb_id` FOREIGN KEY (`feedback_context`) REFERENCES `table_proverb` (`proverb_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Constraints for table `table_linked`
 --
 ALTER TABLE `table_linked`
@@ -360,6 +418,7 @@ ALTER TABLE `table_proverb`
 -- Constraints for table `table_rating_proverb`
 --
 ALTER TABLE `table_rating_proverb`
+  ADD CONSTRAINT `fk_rating_proverb_id` FOREIGN KEY (`proverb_id`) REFERENCES `table_proverb` (`proverb_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_rating_user` FOREIGN KEY (`user_id`) REFERENCES `table_user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --

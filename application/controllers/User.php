@@ -55,18 +55,16 @@ class User extends CI_Controller{
 
     public function signup(){
         // Check if login
-        if($this->session->userdata('login_id'))
+        if($this->session->userdata('login_id')){
             redirect('dashboard');
-        $this->load->view('public/login');
+        }else{
+            // $this->load->view('public/login');
+            //fetch data from User_model 
+            $data['user_lang'] = $this -> User_model -> get_lang();
+            //pass data to view  
+            $this -> load -> view('public/signup', $data); 
 
-
-
-        //fetch data from User_model 
-        $data['user_lang'] = $this -> User_model -> get_lang(); 
-        // $data['user_nativelang'] = $this->input->post('user_nativelang', TRUE);
-        //pass data to view  
-        $this -> load -> view('public/signup', $data); 
-
+        }
     } // eof function signup()
     
     public function user_register(){

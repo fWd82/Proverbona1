@@ -1,5 +1,5 @@
-<footer class="footer fixed-bottom text-center bg-light">
-    Copyrights - Proverbona 
+<footer class="footer">
+        &copy;Copyrights - Proverbona Admin Panel
 </footer>
 </body>
 </html>

@@ -1,5 +1,5 @@
-<footer class="footer fixed-bottom text-center bg-light">
-    Copyrights - Proverbona 
+<footer class="footer text-center">
+© Copyrights - Proverbona 
 </footer>
 </body>
 </html>

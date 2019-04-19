@@ -11,7 +11,7 @@
   <h3> <?= $user_profile->user_fullname; ?></h3> 
   <p> <?= "<strong>Email:</strong> " .                  $user_profile->user_email; ?></p>
   <p> <?= "<strong>Username:</strong> " .               $user_profile->user_name; ?></p>
-  <p> <?= "<strong>Native Language:</strong> " .        $user_profile->user_nativelang; ?></p>
+  <p> <?= "<strong>Native Language:</strong> " .        $user_profile->lang_name; ?></p>
   <p> <?= "<strong>Other Languages that I know:</strong> " . $user_profile->user_otherlang; ?></p>
   <p> <?= "<strong>Country:</strong> " .                $user_profile->user_country ; ?></p>
   <p> <?= "<strong>Address:</strong> " .                $user_profile->user_address ; ?></p>

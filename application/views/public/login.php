@@ -10,14 +10,16 @@ if ($feedback = $this->session->flashdata('feedback')):
 ?>
 <div class="row">
   <div class="col col-lg-6">
-      <div class="alert alert-dismisible <?= $feedback_class ?>" role="alert">
+      <div class="alert <?= $feedback_class ?> alert-dismissible fade show" role="alert">
       <?= $feedback ?> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
       </div>
   </div>
 </div>  
 <?php endif; ?> 
 
-<?= form_open('http://localhost/proverbona1/user/user_login'); ?>
+<?= form_open(base_url('user/user_login')); ?>
 
 
 <div class="form-group">
