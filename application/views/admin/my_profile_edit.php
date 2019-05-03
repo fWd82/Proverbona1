@@ -25,7 +25,7 @@ if ($feedback = $this->session->flashdata('feedback')):
 <?php endif; ?> 
 
 
-<?= form_open(base_url('home/update_my_profile')); ?>
+<?= form_open(base_url('user/update_my_profile')); ?>
 
 
 <div class="form-group">

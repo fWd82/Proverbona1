@@ -1,19 +1,15 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
+    defined('BASEPATH') OR exit('No direct script access allowed');
 class Feedback extends CI_Controller{
+    // View Add_Feedback Page
     public function index(){
         $this->load->view('public/add_feedback');
-    }
+    } // eof index();
+
+    // Insert Feedback to DB
     public function insert_feedback(){
-        
-        
-        
- 
 
         $this->load->library('form_validation');
-        
-
         $this->form_validation->set_rules('feedback_type','Feedback Type','required');
 		$this->form_validation->set_rules('feedback_title','Feedback Title','required');
 		$this->form_validation->set_rules('feedback_body','Feedback Body','required');
@@ -24,8 +20,6 @@ class Feedback extends CI_Controller{
             //Validation Success
             $feedback_post = $this->input->post();
             unset($feedback_post['Submit']);
-
-            $this->load->model('Feedback_model');
 
             if($this->Feedback_model->insert_feedback($feedback_post)){
 
@@ -45,12 +39,12 @@ class Feedback extends CI_Controller{
             $this->load->view('public/add_feedback');
             // echo validation_errors();
         }
-        
+    } // eof insert_feedback();
 
-        // ----------------
-    }
-}
-
-
-
-?>
+    // Constructor
+    public function __construct(){
+        parent::__construct();
+        $this->load->model('Feedback_model');
+    } // eof __construct();    
+    
+} // eof Class Feedback

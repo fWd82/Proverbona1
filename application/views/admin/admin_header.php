@@ -1,11 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <!-- 
-
-  https://stackoverflow.com/a/30367673/5737774
-<?php if($this->uri->uri_string() == 'add_proverb') { echo 'active'; } ?>
-<?php echo $this->uri->uri_string(); ?>
+https://stackoverflow.com/a/30367673/5737774
 https://getbootstrap.com/docs/4.3/layout/overview/
 https://bootswatch.com/flatly/
 ..user_guide/helpers/html_helper.html?highlight=css%20link
@@ -37,7 +33,7 @@ https://bootswatch.com/flatly/
 
    
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href=<?= base_url('home'); ?>>Proverbona</a>
+  <a class="navbar-brand" href=<?= base_url(); ?>>Proverbona</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -48,9 +44,22 @@ https://bootswatch.com/flatly/
       <a class="nav-link"  href=<?= base_url('dashboard'); ?>>Dashboard</a>
         <!-- <a class="nav-link" href="dashboard">Dashboard </a> -->
       </li>
-      <li class="nav-item <?php if($this->uri->uri_string() == 'dashboard/add_proverb') { echo 'active'; } ?>">
-        <a class="nav-link" href=<?= base_url('dashboard/add_proverb'); ?>>Add Proverb <span class="sr-only">(current)</span> </a>
+      <li class="nav-item <?php if($this->uri->uri_string() == 'proverb/add_proverb') { echo 'active'; } ?>">
+        <a class="nav-link" href=<?= base_url('proverb/add_proverb'); ?>>Add Proverb <span class="sr-only">(current)</span> </a>
       </li>
+      
+      <li class="nav-item dropdown <?php if($this->uri->uri_string() == 'user/my_profile') { echo 'active'; } ?>">
+        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        References
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item <?php if($this->uri->uri_string() == 'reference') { echo 'active'; } ?>" href=<?= base_url('reference'); ?>>All References</a>
+          <a class="dropdown-item <?php if($this->uri->uri_string() == 'reference/add_reference') { echo 'active'; } ?>" href=<?= base_url('reference/add_reference'); ?>>Add Reference</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href=<?= base_url('#'); ?>>--</a>
+        </div>
+      </li>      
+
       <li class="nav-item <?php if($this->uri->uri_string() == 'statistics') { echo 'active'; } ?>">
         <a class="nav-link" href=<?= base_url('statistics'); ?>>Statistics</a>
       </li>
@@ -75,15 +84,15 @@ https://bootswatch.com/flatly/
         </div>
       </li>
 
-      <li class="nav-item dropdown <?php if($this->uri->uri_string() == 'home/my_profile') { echo 'active'; } ?>">
+      <li class="nav-item dropdown <?php if($this->uri->uri_string() == 'user/my_profile') { echo 'active'; } ?>">
         <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         My Profile
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item " href=<?= base_url('home/my_profile'); ?>>My Profile</a>
-          <a class="dropdown-item" href=<?= base_url('user/logout'); ?>>Logout</a>
+          <a class="dropdown-item " href=<?= base_url('user/my_profile'); ?>>My Profile</a>
+          <a class="dropdown-item" href=<?= base_url('user/my_favorites'); ?>>My Favorites</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href=<?= base_url('#'); ?>>Other</a>
+          <a class="dropdown-item" href=<?= base_url('user/logout'); ?>>Logout</a>
         </div>
       </li>
 

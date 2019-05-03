@@ -18,8 +18,8 @@ if ($feedback = $this->session->flashdata('feedback')):
 </div>  
 <?php endif; ?> 
 
-<?= form_open(base_url('dashboard/insert_proverb')); ?>
-<!-- <form> dashboard/insert_proverb -->
+<?= form_open(base_url('proverb/insert_proverb')); ?>
+<!-- <form> proverb/insert_proverb -->
 
 <div class="form-group">
     <label for="proverb_lang"> Select Language<span title="Mandatory" class="colorred">*</span> </label>
@@ -38,7 +38,7 @@ if ($feedback = $this->session->flashdata('feedback')):
     
 
 <div class="form-group">
-    <label for="proverb_statement">Proverb - (Proverb Statement)</label>
+    <label for="proverb_statement">Proverb - (Proverb Statement)<span title="Mandatory" class="colorred">*</span></label>
     <?php echo form_textarea(['name'=>'proverb_statement', 'id'=>'proverb_statement', 'rows'=>'3', 'class'=>'form-control', 'placeholder'=>'Enter Proverb', 'value'=>set_value('proverb_statement')]); ?>
     <?php echo form_error('proverb_statement'); ?>
     <!-- <textarea class="form-control" id="proverbstatement" placeholder="Enter Proberb" style="font-size: 14pt"></textarea> -->

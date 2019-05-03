@@ -7,7 +7,7 @@
 
 <div class="text-right">
 <?php
-  echo anchor('home/edit_my_profile', 'Edit My Profile', "class='btn btn-warning'");
+  echo anchor('user/edit_my_profile', 'Edit My Profile', "class='btn btn-warning'");
 ?>
 </div>
 
@@ -34,9 +34,10 @@
   <div class="col col-lg-12">
     <h3>My Favorite Proverb List</h3>
     <p> List of all Favorites</p>
-  </div>
+    <?= anchor("user/my_favorites/", 'My Favorites', "class='btn btn-warning'"); ?> 
+  </div>  
 </div>
-
+<br>
 <div class="row">
   <div class="col col-lg-12">
     <h3>My Contributed Proverb List</h3>
@@ -46,5 +47,5 @@
 <br><br>
 
 
-
+</div>
 <?php include('admin_footer.php'); ?>

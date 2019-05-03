@@ -35,7 +35,7 @@ $config['base_url'] = 'http://localhost/proverbona1/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -389,7 +389,7 @@ $config['sess_regenerate_destroy'] = FALSE;
 |--------------------------------------------------------------------------
 | Cookie Related Variables
 |--------------------------------------------------------------------------
-|
+| 
 | 'cookie_prefix'   = Set a cookie name prefix if you need to avoid collisions
 | 'cookie_domain'   = Set to .your-domain.com for site-wide cookies
 | 'cookie_path'     = Typically will be a forward slash
