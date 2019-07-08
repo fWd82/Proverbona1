@@ -1,23 +1,3 @@
-Proverbona is a platform for proverbs of different languages, which has translation of same proverb in other languages. 
-Features: 
-- Add Proverb 
-- Link Proverb
-- Create User Account
-- Login User
-- Favorite Proverb
-- Rate specific proverb
-- Edit any proverb
-- Flag any proverb/
-- Feedback for proverb/user
-- User Dashboard
-- Admin Dashboard
-- Temporary block user from adding/editing
-- Assigning role of Admin-ship to any user
-- Statitics
-
-- Contributors list and their dedicated page
-and a lot more coming.. 
-
 
 # Proverbona1
 Live Preview here:
@@ -29,7 +9,10 @@ Username: `fWd82` | Password: `fawad82`
 
 
 ## Intro
-Pilot Project for Proverbs from different Languages.
+Volunteer Project for Proverbs from different Languages.
+Proverbona is a platform for proverbs of different languages, which has translation of same proverb in other languages. 
+Let not let our proverbs/history die.
+
 
 ## Updates History
 
@@ -70,5 +53,24 @@ Refer to this link: https://proverbona.fawadiqbal.com/dashboard/todo
 
 #### UI/UX 
 Sumerized page for UI/UX designers are here: https://proverbona.fawadiqbal.com/dashboard/for_ui_ux
+
+## Features: 
+- Add Proverb 
+- Link Proverb
+- Create User Account
+- Login User
+- Favorite Proverb
+- Rate specific proverb
+- Edit any proverb
+- Flag any proverb/
+- Feedback for proverb/user
+- User Dashboard
+- Admin Dashboard
+- Temporary block user from adding/editing
+- Assigning role of Admin-ship to any user
+- Statitics
+
+- Contributors list and their dedicated page
+and a lot more coming.. 
 
 
