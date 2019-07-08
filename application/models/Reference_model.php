@@ -1,11 +1,11 @@
 <?php
     class Reference_model extends CI_Model{
         // List of all Reference
-        public function reference_list(){
-            $this->load->database();
+        public function reference_list(){ 
             $query = $this->db
                             ->select(['reference_id', 'reference_lang', 'reference_title', 'reference_category', 'reference_author', 'reference_introduction', 'reference_published_year', 'reference_img_path', 'reference_timestamp', 'table_user.user_name'])
                             ->from('table_reference')
+                            ->order_by('reference_timestamp', 'DESC')
                             ->join('table_user', 'table_reference.reference_addedby = table_user.user_id')
                             ->get();
             return $query->result();
@@ -35,6 +35,7 @@
         // For Reference Profile Detail Page
         public function get_reference_profile($id) {
             $q = $this->db->from('table_reference')
+                        ->join('table_user', 'table_reference.reference_addedby = table_user.user_id')
                         ->where( ['reference_id' => $id] )
                         ->get();
             if ($q->num_rows()) 

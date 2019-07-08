@@ -80,4 +80,15 @@
             return $query->result();
         }// eof total_no_of_proverbs()
 
+        // Total number of Proverbs
+        function total_no_of_proverbs_added_by_user($user_name){
+            // $this->load->database();
+            $query = $this->db
+                            ->from('table_proverb')
+                            ->join('table_user', 'table_proverb.proverb_addedby = table_user.user_id')
+                            ->where('user_name', $user_name)
+                            ->get();
+            return $query->num_rows();
+        }// eof total_no_of_proverbs()    
+
     } // eof Class Statistics_model 

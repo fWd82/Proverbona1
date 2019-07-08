@@ -3,7 +3,8 @@
 class Feedback extends CI_Controller{
     // View Add_Feedback Page
     public function index(){
-        $this->load->view('public/add_feedback');
+        $data['title'] = 'Add Feedback';
+        $this->load->view('public/add_feedback', $data);
     } // eof index();
 
     // Insert Feedback to DB
@@ -15,28 +16,28 @@ class Feedback extends CI_Controller{
 		$this->form_validation->set_rules('feedback_body','Feedback Body','required');
          
 		$this->form_validation->set_error_delimiters("<p class='text-danger'>","</p>");
-		
+		$data['title'] = 'Add Feedback';
 		if( $this->form_validation->run() ) { //if validation passes
             //Validation Success
             $feedback_post = $this->input->post();
             unset($feedback_post['Submit']);
-
+            
             if($this->Feedback_model->insert_feedback($feedback_post)){
 
                 $this->session->set_flashdata("feedback", "Feedback Successfully Sent");
                 $this->session->set_flashdata("feedback_class", "alert-success");
                 // echo "Successfully added to database";
-                $this->load->view('public/add_feedback');
+                $this->load->view('public/add_feedback', $data);
 
             }else{
                 $this->session->set_flashdata("feedback", "Failed to add to database");
                 $this->session->set_flashdata("feedback_class", "alert-danger");
-                $this->load->view('public/add_feedback');
+                $this->load->view('public/add_feedback', $data);
                 echo "Failed to add to database";
             }
         }else{
             //Validation Fail
-            $this->load->view('public/add_feedback');
+            $this->load->view('public/add_feedback', $data);
             // echo validation_errors();
         }
     } // eof insert_feedback();

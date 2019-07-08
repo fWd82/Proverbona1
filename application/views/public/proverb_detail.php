@@ -1,8 +1,8 @@
 <?php 
-if ($feedback_by = $this->session->userdata('login_id')) {
-    require_once('application/views/admin/admin_header.php'); 
+if ($this->session->userdata('login_id')) { 
+    include(__DIR__ . '../../admin/admin_header.php'); 
 }else{include('public_header.php');}
-?>
+?> 
 
 <?php $user_id = $this->session->userdata('login_id'); ?>
 
@@ -14,9 +14,18 @@ if ($feedback_by = $this->session->userdata('login_id')) {
     <?php // Show Edit and Add to Favorite Buttons only if user if logged in. Otherwise hide it.
       if($this->session->userdata('login_id')){
         echo '<div class="text-right">';
-        echo anchor("proverb/edit_proverb/{$my_proverbs->proverb_id}", 'Edit Proverb', "class='btn btn-success'"); 
+
+        // Edit proverb only if user have editing previlige
+        if (!$my_proverbs->proverb_is_protected && $my_proverbs->user_can_contribute) {
+            echo anchor("proverb/edit_proverb/{$my_proverbs->proverb_id}", 'Edit Proverb', "class='btn btn-success'"); 
+        }
+        // Delete Proverb, only if user logged in Admin
+        if ($this->session->userdata('login_usertype') == 'admin') {
+          echo '&nbsp';
+          echo anchor("admin/delete_proverb/{$my_proverbs->proverb_id}", 'Delete Proverb', "class='btn btn-danger'");           
+        }
         echo '&nbsp';
-        echo anchor("proverb/add_to_favorite/{$my_proverbs->proverb_id}", 'Add to Favorites', "class='btn btn-warning'"); 
+        echo anchor("favorites/add_to_favorite/{$my_proverbs->proverb_id}/{$my_proverbs->lang_id}", 'Add to Favorites', "class='btn btn-warning'"); 
         echo '</div>';
       }
     ?>
@@ -33,7 +42,8 @@ if ($feedback_by = $this->session->userdata('login_id')) {
             <p> <?= "<strong>Proverb Reference:</strong> " .        anchor(base_url('reference/reference_profile')."/{$my_proverbs->reference_id}", $my_proverbs->reference_category . ": " . $my_proverbs->reference_title . " " . $my_proverbs->reference_author); ?></p>
             <p> <?= "<strong>Proverb Tags:</strong> " .             $my_proverbs->proverb_tags; ?></p>
             <p> <?= "<strong>Date Added:</strong> " .               date("D, d M Y", strtotime($my_proverbs->proverb_timestamp));?></p>
-            
+            <p> <?= "<strong>Last Updated:</strong> " .             date("D, d M Y", strtotime($my_proverbs->proverb_last_updated)); ?></p>
+
             <!-- Fetching list of contributors for edit page -->
             <?php if (count($proverb_contributors)):?>
               <p> <?= "<strong>Contributors:</strong> "?>
@@ -67,13 +77,13 @@ if ($feedback_by = $this->session->userdata('login_id')) {
     
   <?php // Show rate proverb only if user if logged in. Otherwise hide it.
   if($this->session->userdata('login_id')){ ?>
-    <!-- Inser Proverb Rating ti DB -->
+    <!-- Inser Proverb Rating t0 DB -->
     <div class="row">      
       <?= form_open(base_url('proverb/rate_proverb')); ?> 
         <div class="form-group">
         <label for="rating_proverb_rating_value">Proverb Rating</label>
-        <!-- <?php echo form_input(['name'=>'rating_proverb_rating_value', 'id'=>'rating_proverb_rating_value', 'class'=>'form-control', 'placeholder'=>'Enter rating', 'value'=>set_value('rating_proverb_rating_value')]); ?> -->
-        
+
+         <!--
         <?php 
         $options = array(
           ''          => 'Rate Proverb ...',
@@ -90,27 +100,55 @@ if ($feedback_by = $this->session->userdata('login_id')) {
         form_dropdown('rating_proverb_rating_value', $options, 'Rate Proverb', $attributes);
         ?>
         <?php echo form_error('rating_proverb_rating_value'); ?>
-        <small id="" class="form-text text-muted">Rate this proverb out of 5</small>
-    </div> 
-  
+      -->
+   <br>
     <?php echo form_hidden('user_id', $user_id); ?>
     <?php echo form_hidden('proverb_id', $my_proverbs->proverb_id); ?>
+    
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="rating_proverb_rating_value" id="inlineRadio1" value="1">1
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+          <input class="form-check-input" type="radio" name="rating_proverb_rating_value" id="inlineRadio2" value="2">2
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+          <input class="form-check-input" type="radio" name="rating_proverb_rating_value" id="inlineRadio3" value="3">3
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+          <input class="form-check-input" type="radio" name="rating_proverb_rating_value" id="inlineRadio4" value="4">4
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+          <input class="form-check-input" type="radio" name="rating_proverb_rating_value" id="inlineRadio5" value="5">5
+      </label>
+    </div>
+
+    <br>  
     <?php echo form_submit(['name'=>'Submit', 'class'=>'btn btn-success my-2 my-sm-0', 'value'=>'Submit', 'id'=>'submit']); ?>
     
     </form>  
 
-  <?php }else{
-      echo '<small id="" class="form-text text-muted">Login to Rate/Edit this Proverb</small>';
+    <?php }else{
+      echo '<small id="" class="form-text text-muted">' . anchor('user', 'Login') . ' to Rate/Edit this Proverb</small>';
     } ?>
 
   <hr>
 
     </div>
 
-<br><br><br><br>
+  <br><br><br><br>
 
 
  
+  </div>
 </div>
 
 <?php include('public_footer.php'); ?>

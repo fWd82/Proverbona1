@@ -1,9 +1,8 @@
 <?php 
-if ($feedback_by = $this->session->userdata('login_id')) {
-    // include('../admin/admin_header.php'); 
-    require_once('application/views/admin/admin_header.php'); 
+if ($feedback_by = $this->session->userdata('login_id')) { 
+    include(__DIR__ . '../../admin/admin_header.php'); 
 }else{include('public_header.php');}
-?>
+?> 
 
 <div class="container"> 
 
@@ -44,5 +43,5 @@ if ($feedback_by = $this->session->userdata('login_id')) {
   </div>
 </div>
 <br><br><br>
-
+</div>
 <?php include('public_footer.php'); ?>

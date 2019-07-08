@@ -13,8 +13,7 @@
             $reference_profile = $this->Reference_model->get_reference_profile($id);
             if (!$reference_profile)
                 show_404();
-
-            $this->load->view('admin/reference_profile', compact('reference_profile'));
+            $this->load->view('public/reference_profile', compact('reference_profile'));
         } // eof reference_profile();    
 
         // Go to Add Reference Page
@@ -31,20 +30,33 @@
         public function insert_reference(){
             if(!$this->session->userdata('login_id')){
                 redirect('user');
-            }    
+            }
+            $config['upload_path'] = 'uploads/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            // $config['max_size']     = '100';
+            // $config['max_width'] = '1024';
+            // $config['max_height'] = '768';
+
+            $this->load->library('upload', $config);
+            
+
             $this->load->library('form_validation');
-            $data['user_lang'] = $this -> User_model -> get_lang();  
+            $data['user_lang'] = $this->User_model->get_lang();  
 
             $this->form_validation->set_rules('reference_title','Reference Title','required');
             $this->form_validation->set_rules('reference_category','Reference Category','required');
             
             $this->form_validation->set_error_delimiters("<p class='text-danger'>","</p>");
             
-            if( $this->form_validation->run() ) { //if validation passes
+            if( $this->form_validation->run() && $this->upload->do_upload()) { //if validation passes
                 //Validation Success
                 $post = $this->input->post();
                 unset($post['Submit']);
-
+                $img_data = $this->upload->data();
+                
+                $reference_img_path = base_url("uploads/" . $img_data['raw_name'] . $img_data['file_ext']);
+                $post['reference_img_path'] = $reference_img_path;
+                
                 if($this->Reference_model->add_reference($post)){
                     $this->session->set_flashdata("feedback", "Reference Successfully Added");
                     $this->session->set_flashdata("feedback_class", "alert-success");
@@ -58,8 +70,11 @@
                 }
             }else{
                 //Validation Fail
+                // $upload_error = $this->upload->display_errors();
+                $data['upload_error'] = $this->upload->display_errors('<p class="text-danger">', '</p>');
                 $this->load->view('admin/add_reference', $data);
-                // echo validation_errors();
+                // $this->load->view('admin/add_reference', compact('data', 'upload_error'));
+                // print_r(validation_errors());
             }
         } // eof insert_reference();
 
@@ -96,7 +111,7 @@
             if($this->form_validation->run() ) { //if validation passes
                 //Validation Success
                 $post = $this->input->post();
-                unset($post['Submit'], $post['reference_addedby']);
+                unset($post['Submit'], $post['reference_addedby'], $post['reference_timestamp']);
 
                 if($this->Reference_model->update_reference($reference_id, $post)){
 
@@ -128,5 +143,6 @@
             $this->load->model('Proverbs_model');
             $this->load->model('Reference_model');
         } // eof constructor __construct()
+        
     } // eof Class Reference
 ?>    

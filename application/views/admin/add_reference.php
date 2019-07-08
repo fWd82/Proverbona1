@@ -18,7 +18,7 @@ if ($feedback = $this->session->flashdata('feedback')):
 </div>  
 <?php endif; ?> 
 
-<?= form_open(base_url('reference/insert_reference')); ?>
+<?= form_open_multipart(base_url('reference/insert_reference')); ?>
  
 
 <div class="form-group">
@@ -88,10 +88,18 @@ if ($feedback = $this->session->flashdata('feedback')):
   </div>
 
   <div class="form-group">
-    <label for="proverb_history">Reference Image Path</label>
-    <?php echo form_textarea(['name'=>'reference_img_path', 'id'=>'proverb_history', 'rows'=>'3', 'class'=>'form-control', 'placeholder'=>'Enter Reference Image Path', 'value'=>set_value('reference_img_path')]); ?>
-    <?php echo form_error('proverb_history'); ?>
+    <label for="reference_img_path">Reference Image Path</label>
+    <?php echo form_textarea(['name'=>'reference_img_path', 'id'=>'reference_img_path', 'rows'=>'3', 'class'=>'form-control', 'placeholder'=>'Enter Reference Image Path', 'value'=>set_value('reference_img_path')]); ?>
+    <?php echo form_error('reference_img_path'); ?>
     <small id="" class="form-text text-muted">Paste link of Cover of above reference</small>
+  </div>
+
+  <div class="form-group">
+    <label for="userfile">Upload Cover Photo</label>
+    <?php echo form_upload(['name'=>'userfile', 'class'=>'form-control']); ?>
+    <?php if(isset($upload_error)) echo $upload_error; ?>
+    <!-- <?php // echo form_error('userfile'); ?> -->
+    <small class="form-text text-muted">Upload Cover Photo</small>
   </div>
  
 

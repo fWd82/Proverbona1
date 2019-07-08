@@ -1,64 +1,60 @@
 <?php 
-if ($this->session->userdata('login_id')) {
-    require('application/views/admin/admin_header.php'); 
-}else{require('public_header.php');}
-?>
+if ($this->session->userdata('login_id')) { 
+    include(__DIR__ . '../../admin/admin_header.php'); 
+}else{include('public_header.php');}
+?> 
 
 <div class="container">
     <h2>Home Page</h2>
     <p>List of All Proverbs</p>
     <p class="text-right">
-        <?php echo "<strong>" . count($all_proverb1)."</strong> out of" . "<strong>".  
-                                $total_all_proverbs ."</strong> showing"; ?>
+        <?php 
+         echo anchor('proverb/add_proverb', 'Add New', "class='btn btn-warning'");
+        ?>
     </p>
-
-<!-- 
-    <table class="table table-striped table-hover">
-        <thead>
-            <th>Sr/ID. No</th>
-            <th>Proverb</th>
-            <th>Tags</th>
-            <th>Added on</th>
-            <th>Added By</th>
-            <th>Action</th>
-
-        </thead>
-        <tbody>
-            <?php if (count($all_proverb1)):?>
-            <?php foreach ($all_proverb1 as $all_proverbss): ?>
-            <tr>
-                <td>
-                    <?= $all_proverbss->proverb_id; ?>
-                </td>
-                <td>
-                    <?= anchor("proverb/proverb_detail/{$all_proverbss->proverb_id}", ($all_proverbss->proverb_statement)); ?>
-                </td>
-                <td><?= $all_proverbss->proverb_tags; ?></td>
-                <td>
-                    <?= date('d M Y H:i', strtotime($all_proverbss->proverb_timestamp)); ?>
-                </td>
-
-                <td>
-                    <?= anchor(base_url('proverb/user_profile')."/{$all_proverbss->user_name}", $all_proverbss->user_name);?>
-                </td>
-
-
-                <td>View | Edit | Delete</td>
-            </tr>
-
-            <?php endforeach; ?>
-            <?php else: ?>
-            <tr>
-            <td colspan="4">No Record Found</td>
-            </tr>
-
-            <?php endif; ?>
-        </tbody>
-    </table>
-    - -->
-    <!-- -============================= -->
-
-
+    <p class="text-right">
+        <?php echo "<strong>" . count($all_proverb1)."</strong> out of " . "<strong>".  
+                                $total_all_proverbs ." </strong>showing"; ?>
+    </p>
+<div class="row">
+    <div class="col-lg-10 col-sm-8" style="padding-top:4px">
+        <?php 
+                $options = array(
+                    ''          => 'Display All Proverbs',
+                    '1'         => 'Display English Proverbs',
+                    '2'         => 'Display Pashto Proverbs',
+                    '3'         => 'Display Urdu Proverbs',
+                    '4'         => 'Display Farsi Proverbs',
+                    '5'         => 'Display Arabic Proverbs',
+                    'selected'  => 'selected' );
+                $attributes = array(
+                    'id'    => 'rating_proverb_rating_value',
+                    'class' => 'form-control'
+                );
+                echo form_open(base_url("proverb/display/")) ;
+                // $key = $this->input->post('rating_proverb_rating_value');
+                // $value = $options[$key];
+                // $this->input->post('DefaultSalary');
+                // echo form_dropdown('rating_proverb_rating_value', $options, 'Display', $attributes);
+                echo form_dropdown('rating_proverb_rating_value', $options, set_value('rating_proverb_rating_value'), $attributes);
+                // $key = $this->input->post('rating_proverb_rating_value');
+                // $value = $options[$key];
+                // $this->input->post('DefaultSalary');
+                
+                echo form_error('rating_proverb_rating_value'); 
+        ?>
+    </div>
+    <div class="col-lg-2 col-sm-4" style="padding-top:4px">
+        <?php
+                // echo anchor("proverb/display/{$options}", 'Submit', 'attributes');
+                echo  form_submit('Submit', 'Filter', ['value', 'class'=>'form-control']);
+                echo form_close();
+  
+  ?>
+    </div>
+</div>
+<br>
+ 
     <?php if (count($all_proverb1)):?>
         <?php foreach ($all_proverb1 as $all_proverbss): ?> 
         
@@ -87,52 +83,44 @@ if ($this->session->userdata('login_id')) {
             </div>
             </a>
              <br>
-        <?php endforeach; ?>
+        <?php endforeach; ?>    
     <?php endif; ?>
- 
- 
 
+    <?php if (count($all_proverb1) == 0){
+        echo "<p>Nothing to display</p>";
+    } else if (count($all_proverb1) > 10){ ?>
 
-<!-- .================================== -->
-
-<!-- 
-    <div class="smthing">
-        <div class="row">
-            <div class="col col-lg-6" style="background:white">Added By:  <?= $all_proverbss->user_name; ?> </div>
-            <div class="col col-lg-6" style="background:blanchedalmond">Created at: <?= date('d M Y H:i', strtotime($all_proverbss->proverb_timestamp)); ?></div>
+    <div class="row">
+        <div class="col-lg-1 offset-lg-8 col-md-3 offset-md-4 col-sm-3 offset-sm-4">
+            Display
         </div>
-
-        <div class="row">
-            <div class="col col-12" style="background:aqua; height: 50px; text-align: center; font-size: 20pt">Pakhto matal ba dalta v</div>
-        </div>
-
-        <div class="row">
-            <div class="col col-lg-12" style="background:cadetblue">Latin English: </div>
-        </div>
-
-        <div class="row">
-            <div class="col col-lg-12" style="background:palegreen">English Meaning: </div>
-        </div>
- 
-        <div class="row">
-            <div class="col col-7" style="background:khaki">Tags: </div>
-            <div class="col col-5" style="background:cyan">Reference: </div>
+        <div class="col-lg-3 col-md-5 col-sm-5">
+            <div class="">
+                <?php
+                    echo form_open(base_url("proverb/display/"));
+                    $options = array(
+                        ''          => '10',
+                        '1'         => '50',
+                        '2'         => '100',
+                        '3'         => '500',
+                        '4'         => '1000');
+                    $attributes = array(
+                        'id'    => 'proverb_show_item',
+                        'class' => 'form-control'
+                    );
+                    // https://stackoverflow.com/questions/16087560/codeigniter-grab-value-from-dropdown-pass-to-controller
+                    echo form_dropdown('proverb_show_item', $options, set_value('proverb_show_item'), $attributes);
+                    echo form_error('proverb_show_item'); 
+                ?>
+            </div>
         </div>
     </div>
 
- Example Pagination
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item active"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
+    <?php } ?>
+        
 
-CodeIgniter Pagination -->
+    <?php echo $this->pagination->create_links(); ?>
 
-
-<?php echo $this->pagination->create_links(); ?>
 
 
 </div>

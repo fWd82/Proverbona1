@@ -12,8 +12,6 @@
 </div>
 
 <div class="row">
-  
-
 
 <div class="col col-lg-12">
   <p> <?= "<strong>User ID:</strong> " . $my_profile->user_id . " | <strong> Member Since:</strong> " . date("D, d M Y", strtotime($my_profile->user_timestamp)); ?></p>
@@ -34,7 +32,7 @@
   <div class="col col-lg-12">
     <h3>My Favorite Proverb List</h3>
     <p> List of all Favorites</p>
-    <?= anchor("user/my_favorites/", 'My Favorites', "class='btn btn-warning'"); ?> 
+    <?= anchor("favorites/", 'My Favorites', "class='btn btn-warning'"); ?> 
   </div>  
 </div>
 <br>

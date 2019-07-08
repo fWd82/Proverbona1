@@ -1,8 +1,9 @@
 <?php 
-if ($feedback_by = $this->session->userdata('login_id')) {
-    require_once('application/views/admin/admin_header.php'); 
+if ($this->session->userdata('login_id')) { 
+    include(__DIR__ . '../../admin/admin_header.php'); 
 }else{include('public_header.php');}
-?>
+?> 
+
 
 <div class="container"> 
 

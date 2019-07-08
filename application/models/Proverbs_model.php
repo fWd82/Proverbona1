@@ -19,7 +19,7 @@
                                 ->from('table_proverb')
                                 ->get();
             return $query->num_rows(); 
-        } 
+        } // eof num_rows_proverbs()
 
         // Insert Proverb to DB
         public function add_proverb($array){
@@ -40,8 +40,7 @@
         public function update_proverb($id, Array $post){
                     return $this->db
                                 ->where('proverb_id', $id) 
-                                ->update('table_proverb', $post);
-                                // ->update('table_proverb', );
+                                ->update('table_proverb', $post); 
         }// eof update_proverb();
 
         // Insert/Update Contributors for Proverbs
@@ -70,10 +69,11 @@
         } // eof rate_proverb();
 
         // Add to Favorite
-        public function add_to_favorite($user_id, $proverb_id){
+        public function add_to_favorite($user_id, $proverb_id, $lang_id){
             return $this->db->insert('table_favorite_proverb', 
                                     ['user_id'=> $user_id, 
-                                     'proverb_id'=>$proverb_id]);
+                                     'proverb_id'=>$proverb_id,
+                                     'proverb_lang'=>$lang_id]);
         }// eof add_to_favorite();
 
         // Get all references for Drop Down
@@ -88,7 +88,6 @@
             foreach($result as $r) {
                 $proverb_reference[$r['reference_id']] = $r['reference_category']  . ": " . $r['reference_title'] . " - " . $r['reference_author']; 
             }
-            
             return $proverb_reference; 
         } // eof get_reference();
 
@@ -119,5 +118,39 @@
             return false; 
         }// eof proverbs_individual_rating()
         
+        public function display_proverb($limit, $offset, $option){
+            if ($option == 0) {
+                $query = $this->db
+                                ->select(['proverb_id','proverb_statement', 'proverb_tags', 'proverb_latin_eng', 'proverb_eng_meaning', 'table_reference.reference_title', 'table_user.user_name', 'proverb_timestamp'])
+                                ->from('table_proverb')
+                                ->order_by('proverb_timestamp', 'DESC')
+                                ->join('table_user', 'table_proverb.proverb_addedby = table_user.user_id')
+                                ->join('table_reference', 'table_proverb.proverb_reference = table_reference.reference_id')
+                                ->limit($limit, $offset)
+                                ->get();
+                return $query->result(); 
+            }else {
+                $query = $this->db
+                                ->select(['proverb_id','proverb_statement', 'proverb_tags', 'proverb_latin_eng', 'proverb_eng_meaning', 'table_reference.reference_title', 'table_user.user_name', 'proverb_timestamp'])
+                                ->from('table_proverb')
+                                ->where('proverb_lang', $option)
+                                ->order_by('proverb_timestamp', 'DESC')
+                                ->join('table_user', 'table_proverb.proverb_addedby = table_user.user_id')
+                                ->join('table_reference', 'table_proverb.proverb_reference = table_reference.reference_id')
+                                ->limit($limit, $offset)
+                                ->get();
+                return $query->result(); 
+            }
+        } // eof display_proverb()
+        
+        // Returning total number of Proverbs for Pagination
+        public function num_rows_proverbs_for_lang($proverb_lang){
+            $query = $this->db
+                                ->select(['proverb_id'])
+                                ->from('table_proverb')
+                                ->where('proverb_lang', $proverb_lang)
+                                ->get();
+            return $query->num_rows(); 
+        } // eof num_rows_proverbs_for_lang()
         
 } // eof class Proverbs_model

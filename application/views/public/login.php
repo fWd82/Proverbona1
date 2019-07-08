@@ -28,20 +28,20 @@ if ($feedback = $this->session->flashdata('feedback')):
       </div>
   </div>
 </div>  
-<?php endif; ?> 
+<?php endif; ?>  
 
 <?= form_open(base_url('user/user_login')); ?>
 
 
 <div class="form-group">
     <label for="user_name">Username or Email</label>
-    <?php echo form_input(['name'=>'user_name', 'id'=>'user_name', 'class'=>'form-control', 'placeholder'=>'Enter Your Username', 'value'=>set_value('user_name')]); ?>
+    <?php echo form_input(['name'=>'user_name', 'id'=>'user_name', 'class'=>'form-control', 'placeholder'=>'Enter Your Username', 'value'=>set_value('user_name', 'fWd82')]); ?>
     <?php echo form_error('user_name'); ?>
     </div>
 
 <div class="form-group">
     <label for="user_password">Password</label>
-    <?php echo form_input(['name'=>'user_password', 'id'=>'user_password', 'class'=>'form-control', 'placeholder'=>'Enter Your Password here', 'value'=>set_value('user_password')]); ?>
+    <?php echo form_input(['name'=>'user_password', 'id'=>'user_password', 'class'=>'form-control', 'placeholder'=>'Enter Your Password here', 'value'=>set_value('user_password', 'fawad82')]); ?>
     <?php echo form_error('user_password'); ?>
 </div>
 

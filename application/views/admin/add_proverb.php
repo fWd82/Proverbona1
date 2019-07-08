@@ -33,10 +33,7 @@ if ($feedback = $this->session->flashdata('feedback')):
     <?php echo form_error('proverb_lang'); ?>
     <small id="" class="form-text text-muted">Select Language for which you want to add proverb</small>
 </div>
-
-<!-- <?php echo form_hidden('proverb_lang', '1'); ?> -->
-    
-
+ 
 <div class="form-group">
     <label for="proverb_statement">Proverb - (Proverb Statement)<span title="Mandatory" class="colorred">*</span></label>
     <?php echo form_textarea(['name'=>'proverb_statement', 'id'=>'proverb_statement', 'rows'=>'3', 'class'=>'form-control', 'placeholder'=>'Enter Proverb', 'value'=>set_value('proverb_statement')]); ?>
