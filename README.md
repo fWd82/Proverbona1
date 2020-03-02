@@ -1,11 +1,14 @@
 
 # Proverbona1
 Live Preview here:
-https://fawadiqbal.com/proverbona/
 
-Test Credentials:
+http://proverbona.fawadiqbal.com/
 
-Username: `fWd82` | Password: `fawad82`
+Test Credentials (For Admin):
+Username: `Admin` | Password: `123456`
+
+Test Credentials (For normal user):
+Username: `Ahmad` | Password: `123456`
 
 
 ## Intro
