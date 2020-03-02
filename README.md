@@ -46,16 +46,16 @@ Let not let our proverbs/history die.
 ### GENERAL OVERVIEW
 
 #### DASHBOARD
-https://proverbona.fawadiqbal.com/dashboard
+http://proverbona.fawadiqbal.com/dashboard
 
 #### CONTRIBUTORS 
-https://proverbona.fawadiqbal.com/contributors
+http://proverbona.fawadiqbal.com/contributors
 
 #### If You want to Contribute?
-Refer to this link: https://proverbona.fawadiqbal.com/dashboard/todo
+Refer to this link: http://proverbona.fawadiqbal.com/dashboard/todo
 
 #### UI/UX 
-Sumerized page for UI/UX designers are here: https://proverbona.fawadiqbal.com/dashboard/for_ui_ux
+Sumerized page for UI/UX designers are here: http://proverbona.fawadiqbal.com/dashboard/for_ui_ux
 
 ## Features: 
 - Add Proverb 
