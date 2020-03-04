@@ -3,7 +3,7 @@ if ($this->session->userdata('login_id')) {
     include(__DIR__ . '../../admin/admin_header.php'); 
 }else{include('public_header.php');}
 ?> 
-
+ 
 <div class="container">
     <h2>Home Page</h2>
     <p>List of All Proverbs</p>
@@ -26,7 +26,8 @@ if ($this->session->userdata('login_id')) {
                     '3'         => 'Display Urdu Proverbs',
                     '4'         => 'Display Farsi Proverbs',
                     '5'         => 'Display Arabic Proverbs',
-                    'selected'  => 'selected' );
+                    // 'selected'  => 'selected' );
+                     );
                 $attributes = array(
                     'id'    => 'rating_proverb_rating_value',
                     'class' => 'form-control'

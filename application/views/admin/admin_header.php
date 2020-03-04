@@ -40,10 +40,22 @@ https://bootswatch.com/flatly/
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
 
-      <li class="nav-item <?php if($this->uri->uri_string() == 'dashboard') { echo 'active'; } ?>">
-      <a class="nav-link"  href=<?= base_url('dashboard'); ?>>Dashboard</a>
-        <!-- <a class="nav-link" href="dashboard">Dashboard </a> -->
-      </li>
+      <!-- <li class="nav-item <?php if($this->uri->uri_string() == 'admin') { echo 'active'; } ?>">
+      <a class="nav-link"  href=<?= base_url('admin'); ?>>Dashboard</a> 
+      </li> -->
+ 
+      <li class="nav-item dropdown <?php if($this->uri->uri_string() == 'admin') { echo 'active'; } ?>">
+        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dashboard
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item <?php if($this->uri->uri_string() == 'admin') { echo 'active'; } ?>" href=<?= base_url('admin'); ?>>Admin Dashboard</a>
+          <a class="dropdown-item <?php if($this->uri->uri_string() == 'dashboard') { echo 'active'; } ?>" href=<?= base_url('dashboard'); ?>>User Dashboard</a>
+      </li>  
+
+
+
+
 
       <li class="nav-item dropdown <?php if($this->uri->uri_string() == 'user/my_profile') { echo 'active'; } ?>">
         <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,6 +84,12 @@ https://bootswatch.com/flatly/
       <li class="nav-item <?php if($this->uri->uri_string() == 'statistics') { echo 'active'; } ?>">
         <a class="nav-link" href=<?= base_url('statistics'); ?>>Statistics</a>
       </li>
+
+      <li class="nav-item <?php if($this->uri->uri_string() == 'contributors') { echo 'active'; } ?>">
+        <a class="nav-link" href=<?= base_url('contributors'); ?>>Contributors</a>
+      </li>
+
+
     </ul>
 
     <!-- <form class="form-inline my-2 my-lg-0">

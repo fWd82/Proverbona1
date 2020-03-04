@@ -58,6 +58,7 @@
                                 ->where('tpc_proverb_id', $proverb_id)
                                 ->join('table_user', 'table_proverb_contributors.tpc_user_id = table_user.user_id')
                                 ->join('table_proverb', 'table_proverb_contributors.tpc_proverb_id = table_proverb.proverb_id')
+                                ->distinct()
                                 ->get();
             return $query->result(); 
         } // eof proverb_contributors()
@@ -68,13 +69,6 @@
             return $this->db->insert('table_rating_proverb', $array);
         } // eof rate_proverb();
 
-        // Add to Favorite
-        public function add_to_favorite($user_id, $proverb_id, $lang_id){
-            return $this->db->insert('table_favorite_proverb', 
-                                    ['user_id'=> $user_id, 
-                                     'proverb_id'=>$proverb_id,
-                                     'proverb_lang'=>$lang_id]);
-        }// eof add_to_favorite();
 
         // Get all references for Drop Down
         public function get_reference() {

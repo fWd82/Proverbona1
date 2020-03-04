@@ -6,13 +6,30 @@
 <hr>
 
 <div class="alert alert-warning text-left alert-dismissible fade show" role="alert">
-  Dummy Username/Password
-  <br>
-  <strong>Username:</strong> fWd82
-  <br>
-  <strong>Password:</strong> fawad82
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
+  <div class="col">
+  
+   
+    Dummy Username/Password - ADMIN LOGIN
+    <br>
+    <strong>Username:</strong> Admin
+    <br>
+    <strong>Password:</strong> 123456
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+   
+  </div>
+  <HR />
+  <div class="col">
+    Dummy Username/Password - USER LOGIN
+    <br>
+    <strong>Username:</strong> Ahmad
+    <br>
+    <strong>Password:</strong> 123456
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+   
+  </div>
+
 </div>
 
 <?php
@@ -35,13 +52,13 @@ if ($feedback = $this->session->flashdata('feedback')):
 
 <div class="form-group">
     <label for="user_name">Username or Email</label>
-    <?php echo form_input(['name'=>'user_name', 'id'=>'user_name', 'class'=>'form-control', 'placeholder'=>'Enter Your Username', 'value'=>set_value('user_name', 'fWd82')]); ?>
+    <?php echo form_input(['name'=>'user_name', 'id'=>'user_name', 'class'=>'form-control', 'placeholder'=>'Enter Your Username', 'value'=>set_value('user_name', 'Admin')]); ?>
     <?php echo form_error('user_name'); ?>
     </div>
 
 <div class="form-group">
     <label for="user_password">Password</label>
-    <?php echo form_input(['name'=>'user_password', 'id'=>'user_password', 'class'=>'form-control', 'placeholder'=>'Enter Your Password here', 'value'=>set_value('user_password', 'fawad82')]); ?>
+    <?php echo form_input(['name'=>'user_password', 'id'=>'user_password', 'class'=>'form-control', 'placeholder'=>'Enter Your Password here', 'value'=>set_value('user_password', '123456')]); ?>
     <?php echo form_error('user_password'); ?>
 </div>
 

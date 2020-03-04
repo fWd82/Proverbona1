@@ -12,6 +12,7 @@
                                 ->join('table_user', 'table_favorite_proverb.user_id = table_user.user_id')
                                 ->join('table_proverb', 'table_favorite_proverb.proverb_id = table_proverb.proverb_id')
                                 ->limit($limit, $offset)
+                                ->distinct()
                                 ->get();
                 return $query->result(); 
             }else {
@@ -23,6 +24,7 @@
                                 ->join('table_user', 'table_favorite_proverb.user_id = table_user.user_id')
                                 ->join('table_proverb', 'table_favorite_proverb.proverb_id = table_proverb.proverb_id')
                                 ->limit($limit, $offset)
+                                ->distinct()
                                 ->get();
                 return $query->result(); 
             } 
@@ -47,6 +49,40 @@
                                 ->get();
             return $query->num_rows(); 
         } // eof num_rows_proverbs_for_lang()
+
+        // Add to Favorite
+        public function add_to_favorite($user_id, $proverb_id, $lang_id){
+            return $this->db->insert('table_favorite_proverb', 
+                                    ['user_id'=> $user_id, 
+                                        'proverb_id'=>$proverb_id,
+                                        'proverb_lang'=>$lang_id]);
+        }// eof add_to_favorite();
+
+
+        // // Delete Proverb
+        // public function delete_proverb($proverb_id){
+        //     return $this->db
+        //                     ->where('proverb_id', $proverb_id)
+        //                     ->delete('table_proverb');
+        // } // eof delete_proverb() 
+
+        // Delete
+        public function delete_from_favorite($user_id, $proverb_id){
+            return $this->db
+                            ->where('user_id', $user_id)
+                            ->where('proverb_id', $proverb_id)
+                            ->delete('table_favorite_proverb');
+        }// eof delete_from_favorite();
+
+        // Check if proverb is already been favorite or not
+        public function if_added_to_fav($proverb_id){
+            $query = $this->db
+                                ->select()
+                                ->from('table_favorite_proverb')
+                                ->where("proverb_id", $proverb_id)
+                                ->get();
+            return $query->num_rows();
+        } // eof num_rows_proverbs()
 
 
 

@@ -7,7 +7,7 @@ class User_model extends CI_Model{
         return $this->db->insert('table_user', $array);
     } // eof signin_user();
 
-    // Sign in User
+    // Sign in User | ACTIVE RECORDS
     public function signin_user($username, $password){
         $q = $this->db->where(['user_name'=>$username, 'user_password'=>$password])
                       ->get('table_user');
@@ -29,7 +29,7 @@ class User_model extends CI_Model{
             
             return $user_nativelang; 
     } // eof get_lang();
-
+ 
     // Show User Other Profile
     public function get_user_profile($id) {
         $q = $this->db->from('table_user')

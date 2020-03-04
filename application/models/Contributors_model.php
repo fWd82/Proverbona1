@@ -1,6 +1,7 @@
 <?php
     class Contributors_model extends CI_Model{
-        // List of all Reference
+        // List of all contributors_list
+        // SELECT DISTINCT (`tpc_user_id`) FROM `table_proverb_contributors` WHERE `tpc_user_id`=1 AND `tpc_proverb_id`=7
         public function contributors_list(){ 
             $query = $this->db
                             // ->select(['tm_id', 'reference_lang', 'reference_title', 'reference_category', 'reference_author', 'reference_introduction', 'reference_published_year', 'reference_img_path', 'reference_timestamp', 'table_user.user_name'])

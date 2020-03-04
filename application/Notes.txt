@@ -1,0 +1,11 @@
+
+
+
+
+select i.*
+from table_proverb i
+join table_item_cluster c on c.item_id = i.proverb_id
+join table_item_cluster c1
+  on  c1.cluster_id = c.cluster_id
+  and c1.item_id <> c.item_id  -- exclude the given item
+where c1.item_id = 13

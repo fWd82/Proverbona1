@@ -165,13 +165,18 @@
         } // eof update_proverb();
 
         // Load Data of Proverb
-        public function proverb_detail($id){
+        public function proverb_detail($id){            
             $my_proverbs =      $this->Proverbs_model->get_proverb_in_detail($id);
             $proverbs_rating =  $this->Proverbs_model->proverbs_individual_rating($id);
             $proverb_contributors =  $this->Proverbs_model->proverb_contributors($id);
+            $if_added_to_favorite = $this->Favorites_model->if_added_to_fav($id);
+
+            // print_r($if_added_to_favorite);  
+            // print_r($id);  
+
             if (!$my_proverbs)
                 show_404();
-            $this->load->view('public/proverb_detail', compact(['my_proverbs', 'proverbs_rating', 'proverb_contributors']));
+            $this->load->view('public/proverb_detail', compact(['my_proverbs', 'proverbs_rating', 'proverb_contributors', 'if_added_to_favorite']));
         } // eof proverb();
 
         // Rate Proverb from Proverb_Details Page
@@ -293,11 +298,26 @@
         
         } // eof search_results()
 
+
+        public function if_added_to_fav($proverb_id){
+            $this->load->model('Favorites_model');
+            $my_proverbs =      $this->Favorites_model->if_favorites_available($proverb_id);
+            if ($my_proverbs){
+                // show_404();
+                print_r("Yes");
+            }else{
+                print_r("No");
+            }
+            // $this->load->view('public/proverb_detail', compact(['my_proverbs', 'proverbs_rating', 'proverb_contributors']));
+        } // eof proverb();
+
+
         // Constructor
         public function __construct(){
             parent::__construct();
             $this->load->model('Proverbs_model');
             $this->load->model('User_model');
+            $this->load->model('Favorites_model');
         } // eof __construct();
 
 }

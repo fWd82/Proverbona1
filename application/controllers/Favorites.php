@@ -42,7 +42,7 @@ class Favorites extends CI_Controller{
         public function add_to_favorite($proverb_id){
             $lang_id = $this->uri->segment(4);          
             $user_id = $this->session->userdata('login_id');
-            if ($this->Proverbs_model->add_to_favorite($user_id, $proverb_id, $lang_id)){
+            if ($this->Favorites_model->add_to_favorite($user_id, $proverb_id, $lang_id)){
                 redirect("proverb/proverb_detail/{$proverb_id}");
             }else{
                 exit("Failed to add to Favorites");
@@ -58,6 +58,19 @@ class Favorites extends CI_Controller{
                 redirect('favorites/index');
             }
             redirect('favorites/index');
+        } // eof delete_my_favorite()
+
+
+        // Delete Favorites
+        public function delete_favorite($user_id, $proverb_id){
+            // exit($user_id . " : ".$proverb_id);
+            
+            if(!$this->session->userdata('login_id'))
+            redirect('dashboard');
+            // delete
+            if ($this->Favorites_model->delete_from_favorite($user_id, $proverb_id)){
+                redirect('proverb/proverb_detail/'.$proverb_id);
+            } 
         } // eof delete_my_favorite()
 
         // display Proverb home Page

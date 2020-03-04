@@ -2,7 +2,9 @@
 
 <div class="container"> 
     
-    <br><h2> TODO </h2> 
+    <br><h2> TODO </h2>
+    <br><h4 class="text-danger"> (Dont design it - Its just for keeping track of process) </h4> 
+
     <p> Following are the process shown </p> 
     <br>
 
@@ -22,9 +24,10 @@
 
                 <h4>Bugs / Errors</h4>
                 <ol>
-                    <li>Contributions fetch just one user <strong><?= anchor('proverb/proverb_detail/7', 'HERE'); ?></strong>  </li>
+                    <li>DONE - Contributions fetch just one user <strong><?= anchor('proverb/proverb_detail/7', 'HERE'); ?></strong>  </li>
+                    <li>DONE - Favorites Proverb | Add to / Delete  <strong><?= anchor('favorites', 'HERE'); ?></strong> </li>                
+                    <li>DONE - Display Favorites Proverb just once, as UNIQUE key is on table db.  <strong><?= anchor('proverb/proverb_detail/7', 'HERE'); ?></strong> </li>                
                     <li>Show feedback to user after adding proverb to Favorites <strong><?= anchor('proverb/proverb_detail/7', 'HERE'); ?></strong> </li>                
-                    <li>Display Favorites Proverb just once, as UNIQUE key is on table db.  <strong><?= anchor('proverb/proverb_detail/7', 'HERE'); ?></strong> </li>                
                     <li>Rate Proverb - Adding Stars Ajax <strong><?= anchor('proverb/proverb_detail/7', 'HERE'); ?></strong> </li>
                 </ol>
 

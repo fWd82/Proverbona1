@@ -50,7 +50,7 @@
                             ->update('table_user');
         } // eof temp_ban_user()
 
-        // Ban User from not editing or adding Proverb
+        // Delete Proverb
         public function delete_proverb($proverb_id){
             return $this->db
                             ->where('proverb_id', $proverb_id)

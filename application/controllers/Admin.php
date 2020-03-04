@@ -6,7 +6,7 @@ class Admin extends CI_Controller{
     public function index(){
         $this->load->view('admin/admin_dashboard');
         
-    }
+    } 
 
     // Show all Feedbacks on Admin Screen
     function show_feedbacks(){

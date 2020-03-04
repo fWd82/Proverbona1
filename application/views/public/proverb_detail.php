@@ -2,7 +2,7 @@
 if ($this->session->userdata('login_id')) { 
     include(__DIR__ . '../../admin/admin_header.php'); 
 }else{include('public_header.php');}
-?> 
+?>
 
 <?php $user_id = $this->session->userdata('login_id'); ?>
 
@@ -25,7 +25,15 @@ if ($this->session->userdata('login_id')) {
           echo anchor("admin/delete_proverb/{$my_proverbs->proverb_id}", 'Delete Proverb', "class='btn btn-danger'");           
         }
         echo '&nbsp';
-        echo anchor("favorites/add_to_favorite/{$my_proverbs->proverb_id}/{$my_proverbs->lang_id}", 'Add to Favorites', "class='btn btn-warning'"); 
+
+        
+
+        if (!$if_added_to_favorite > 0) {
+          // print_r("True: " . $if_added_to_favorite);
+          echo anchor("favorites/add_to_favorite/{$my_proverbs->proverb_id}/{$my_proverbs->lang_id}", 'Add to Favorites', "class='btn btn-warning'"); 
+        }else{
+          echo anchor("favorites/delete_favorite/{$my_proverbs->user_id}/{$my_proverbs->proverb_id}", 'Delete from Favorites', "class='btn btn-danger'");  
+        }
         echo '</div>';
       }
     ?>
@@ -35,10 +43,10 @@ if ($this->session->userdata('login_id')) {
             <p> <?= "<strong>Proverb ID:</strong> " .               $my_proverbs->proverb_id . " | <strong>Proverb Language:</strong> " .       $my_proverbs->lang_name ; ?></p>
             <h3 class=""> <?= $my_proverbs->proverb_statement; ?></h3> 
             <p> <?= "<strong>Added By:</strong> " .                 anchor(base_url('user/user_profile'). "/{$my_proverbs->user_name}", $my_proverbs->user_name);?></p>
-            <p> <?= "<strong>Latin English:</strong> " .            $my_proverbs->proverb_latin_eng; ?></p>
-            <p> <?= "<strong>Proverb Introduction:</strong> " .     $my_proverbs->proverb_introduction; ?></p>
-            <p> <?= "<strong>Proverb English Meaning:</strong> " .  $my_proverbs->proverb_eng_meaning; ?></p>
-            <p> <?= "<strong>Proverb History:</strong> " .          $my_proverbs->proverb_history ; ?></p>
+            <p> <?= "<strong>Latin English:</strong> " .            htmlspecialchars($my_proverbs->proverb_latin_eng); ?></p>
+            <p> <?= "<strong>Proverb Introduction:</strong> " .     htmlspecialchars($my_proverbs->proverb_introduction); ?></p>
+            <p> <?= "<strong>Proverb English Meaning:</strong> " .  htmlspecialchars($my_proverbs->proverb_eng_meaning); ?></p>
+            <p> <?= "<strong>Proverb History:</strong> " .          htmlspecialchars($my_proverbs->proverb_history); ?></p>
             <p> <?= "<strong>Proverb Reference:</strong> " .        anchor(base_url('reference/reference_profile')."/{$my_proverbs->reference_id}", $my_proverbs->reference_category . ": " . $my_proverbs->reference_title . " " . $my_proverbs->reference_author); ?></p>
             <p> <?= "<strong>Proverb Tags:</strong> " .             $my_proverbs->proverb_tags; ?></p>
             <p> <?= "<strong>Date Added:</strong> " .               date("D, d M Y", strtotime($my_proverbs->proverb_timestamp));?></p>
@@ -74,16 +82,17 @@ if ($this->session->userdata('login_id')) {
     </div>
 
     <hr>
-    
-  <?php // Show rate proverb only if user if logged in. Otherwise hide it.
+  
+  <!-- Show rate proverb only if user if logged in. Otherwise hide it. -->
+  <?php
   if($this->session->userdata('login_id')){ ?>
-    <!-- Inser Proverb Rating t0 DB -->
+    <!-- Inser Proverb Rating to DB -->
     <div class="row">      
       <?= form_open(base_url('proverb/rate_proverb')); ?> 
         <div class="form-group">
         <label for="rating_proverb_rating_value">Proverb Rating</label>
 
-         <!--
+      <!--
         <?php 
         $options = array(
           ''          => 'Rate Proverb ...',
@@ -142,13 +151,70 @@ if ($this->session->userdata('login_id')) {
 
   <hr>
 
+
+  <div class="col col-lg-12">
+      <h4>LINKED Proverbs - Same proverb in other Languages</h4>
+      <div class="smthing">
+        <div class="row">
+          Linked Proverbs will be shown here (for example in English).
+      </div>
+    </div>
+    <br>
+    <div class="smthing">
+        <div class="row">
+          Other Linked Proverbs will be shown here (for example in Urdu) .
+      </div>
     </div>
 
-  <br><br><br><br>
+    </div>
+  <!-- div to show all related links  
+  <?php if (count($all_proverb1)):?>
+    <?php foreach ($all_proverb1 as $all_proverbss): ?> 
+    
+
+      
 
 
- 
+    <div class="col col-lg-12">
+      <h4>LINKED - Same verson in other Languages</h4>
+      <div class="smthing">
+        <div class="row">
+          <div class="col col-lg-6" style="background:rgb(248, 255, 255)">Added By:  <?= $all_proverbss->user_name; ?> </div>
+          <div class="col col-lg-6" style="background:rgb(245, 244, 244)">Created at: <?= date('d M Y H:i', strtotime($all_proverbss->proverb_timestamp)); ?></div>
+        </div>
+
+        <div class="row">
+          <div class="col col-12" style="background:#eee; height: 50px; text-align: center; font-size: 20pt"> <?= anchor(base_url('proverb/proverb_detail') . "/{$all_proverbss->proverb_id}", $all_proverbss->proverb_statement); ?> </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-lg-12" style="background:rgb(221, 221, 221)">Latin English: <?= $all_proverbss->proverb_latin_eng; ?> </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-lg-12" style="background:rgb(245, 244, 244)">English Meaning: <?= $all_proverbss->proverb_eng_meaning; ?></div>
+        </div>
+            
+        <div class="row">
+          <div class="col col-7" style="background:rgb(248, 255, 255)">Tags: <?= $all_proverbss->proverb_tags; ?> </div>
+          <div class="col col-5" style="background:rgb(245, 244, 244)">Reference: <?= $all_proverbss->reference_title; ?> </div>
+        </div>
+        
+      </div>
+    <?php endforeach; ?>    
+  <?php endif; ?>  
+             --> 
+    
+
+
   </div>
-</div>
 
+
+    </div>
+
+  <br><br> <br><br>
+
+
+  </div>
+</div> <!-- eof class="container" -->
 <?php include('public_footer.php'); ?>

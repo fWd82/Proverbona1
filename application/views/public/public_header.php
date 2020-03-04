@@ -68,13 +68,17 @@ https://bootswatch.com/flatly/
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item <?php if($this->uri->uri_string() == 'reference') { echo 'active'; } ?>" href=<?= base_url('reference'); ?>>All References</a>
-          <a class="dropdown-item <?php if($this->uri->uri_string() == 'reference/add_reference') { echo 'active'; } ?>" href=<?= base_url('reference/add_reference'); ?>>Add Reference</a>
+          <a class="dropdown-item <?php if($this->uri->uri_string() == 'reference/add_reference') { echo 'active'; } ?>" href=<?= base_url('reference/add_reference'); ?> >Add Reference</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href=<?= base_url('#'); ?>>--</a>
         </div>
       </li>   
       <li class="nav-item <?php if($this->uri->uri_string() == 'statistics') { echo 'active'; } ?>">
         <a class="nav-link" href=<?= base_url('statistics'); ?>>Statistics</a>
+      </li>
+
+      <li class="nav-item <?php if($this->uri->uri_string() == 'contributors') { echo 'active'; } ?>">
+        <a class="nav-link" href=<?= base_url('contributors'); ?>>Contributors</a>
       </li>
     </ul>
 
